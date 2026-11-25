@@ -1,19 +1,14 @@
 # Pedro Scripts resource naming migration
 
-Status: preparation and dependency audit. No runtime identifiers have been changed in this commit.
+Status: repository rename and source migration completed; live RedM verification is still required.
 
 ## Official convention
 
-All Pedro Scripts RedM resource folder names and GitHub repository names use `ps_` instead of `ps-`.
-
-Examples:
-- `ps-medical` -> `ps_medical`
-- `ps-menu` -> `ps_menu`
-- `ps-core` -> `ps_core`
+All Pedro Scripts resource folders and GitHub repositories use `ps_` instead of `ps-`. The existing `ps_gunsmith` repository already followed this convention and remains unchanged.
 
 ## Repository rename map
 
-| Existing repository | Target repository |
+| Previous repository | Current repository |
 | --- | --- |
 | `ps-base` | `ps_base` |
 | `ps-core` | `ps_core` |
@@ -35,42 +30,31 @@ Examples:
 | `ps-progressbar` | `ps_progressbar` |
 | `ps-weapons` | `ps_weapons` |
 
-The existing `ps_gunsmith` repository already follows the new convention and is not renamed.
+## Completed migration work
 
-## Runtime references that must migrate together
+- Updated resource names, manifest dependencies and shared imports in the resource manifests.
+- Updated cross-resource exports, resource-state checks and provider keys in the medical, doctor, character and weapons integrations.
+- Updated PS Base submodule URLs and paths, including the six Git submodule entries.
+- Updated PS Base catalog IDs, repository names, install paths and dependency IDs.
+- Updated release metadata in the six currently catalogued foundation repositories.
+- Updated the PS Base catalog schema and tests for underscore resource IDs.
+- Updated the catalog synchronizer to accept the existing hyphenated release metadata and asset names while emitting underscore dependency IDs. This keeps existing published releases installable until new releases are published.
+- Updated the medical release package folder prefix.
+- Renamed the bundled ragdoll and minigame directories to `standalone/ps_ragdoll` and `standalone/ps_minigame`, and aligned their manifests.
+- Updated resource documentation, examples and the PS-MENU demo resource references.
 
-The repository and resource folder rename must be coordinated with:
-- `fxmanifest.lua` `dependencies` entries.
-- Shared script imports such as `@ps-core/...`.
-- Cross-resource exports such as `exports['ps-menu']`.
-- Resource-name lookups and resource-state checks.
-- Installer catalog IDs, repository URLs, submodule paths, release asset names and update metadata.
-- Documentation, examples, server configuration snippets and CI/release workflows.
+## Compatibility decisions
 
-## Nested resources and duplicate copies
+Not every hyphenated string is a resource name. Existing network event namespaces (for example `ps-medical:*`, `ps-doctor:*`, `ps-menu:*` and `ps-minigames:*`) are preserved to avoid breaking integrations that listen for those events. Existing command names and ACE permission identifiers are also preserved. Historical release asset filenames remain hyphenated until new releases are published; the catalog synchronizer explicitly supports this transition.
 
-The current repository trees also contain nested resource copies:
-- `ps-medical/standalone/ps-ragdoll` declares resource name `ps-ragdoll`.
-- `ps-doctor/standalone/ps-minigames` declares resource name `ps-minigames`.
+## Verification still required
 
-These must be reconciled with the standalone repositories before changing names. Do not silently rename or overwrite either copy; compare their contents and establish the canonical source first.
+The GitHub source changes are committed, but they do not replace a live RedM test. Before production use:
 
-## Compatibility safeguards
+1. Update server resource folder names to the new underscore names.
+2. Check the startup order for dependencies such as `ps_core`, `ps_database`, `ps_ragdoll`, `ps_medical`, `ps_menu` and `ps_minigame`.
+3. Start the resources and check for missing-resource, export and provider errors.
+4. Test the medical/doctor, database/characters, weapons/database and menu integrations.
+5. Run the PS Base validation and catalog tests, then verify that an existing published release still downloads under its legacy asset filename.
 
-Do not blindly replace every occurrence of `ps-` with `ps_`. Some strings are stable public interfaces rather than resource names, including network event namespaces, command names, permission/ACE identifiers, log labels, release history and historical documentation. Preserve these unless a deliberate compatibility migration is defined.
-
-Where an event or command namespace is intentionally changed, keep a temporary legacy listener/alias and document its removal policy. Resource exports and manifest imports must point to the new resource name after the folder rename.
-
-## Safe migration order
-
-1. Rename GitHub repositories while preserving repository history.
-2. Update `ps_base/.gitmodules`, submodule paths, catalog IDs, repository URLs, release metadata and installer tests as one coordinated change.
-3. Reconcile nested copies against canonical standalone repositories.
-4. Rename resource folders and update manifests, imports, exports, resource-state checks and integration references across all repositories.
-5. Update documentation and examples; retain explicit upgrade notes for existing server installations.
-6. Search every repository for old resource identifiers and run available automated tests.
-7. Smoke-test dependency startup order and cross-resource exports on a RedM test server before declaring the migration complete.
-
-## Current limitation
-
-The connected GitHub operations available to this workspace can inspect repositories and commit file changes, but do not expose the GitHub repository-settings rename operation. Repository renames therefore need to be performed in GitHub's repository settings (or through an authorized GitHub API credential with repository administration access) before runtime references are switched. Until then, keeping the current manifests intact avoids breaking existing installations.
+Do not keep both old and new copies of the same resource running simultaneously.
