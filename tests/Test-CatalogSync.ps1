@@ -11,7 +11,7 @@ $metadata = [pscustomobject]@{
     id = 'ps-core'
     version = '0.1.0'
     status = 'preview'
-    dependencies = @()
+    dependencies = @('ps-core', 'ps-database')
     apiVersion = '1.0.0'
     filePolicies = @{ default = 'managed'; rules = @() }
 }
@@ -31,8 +31,10 @@ $entry = ConvertTo-PSBaseReleaseEntry -GitHubRelease $release -Metadata $metadat
 if ($entry.version -ne '0.1.0' -or $entry.tag -ne 'v0.1.0' -or $entry.sha256 -ne ('a' * 64)) {
     throw 'Release catalog entry was not created correctly.'
 }
-if ($entry.apiVersion -ne '1.0.0' -or $entry.dependencies.Count -ne 0 -or $entry.status -ne 'preview') {
-    throw 'Release compatibility or dependency metadata was not retained.'
+if ($entry.apiVersion -ne '1.0.0' -or $entry.dependencies.Count -ne 2 -or
+    $entry.dependencies[0] -ne 'ps_core' -or $entry.dependencies[1] -ne 'ps_database' -or
+    $entry.status -ne 'preview') {
+    throw 'Release compatibility or normalized dependency metadata was not retained.'
 }
 
 $catalogRelease = $entry | ConvertTo-Json -Depth 10 | ConvertFrom-Json
