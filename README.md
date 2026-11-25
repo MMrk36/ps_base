@@ -13,7 +13,11 @@ PS Base is a Windows desktop installer with a PowerShell 7 GUI and CLI engine. I
 - Installation target: a user-selected RedM server `resources` directory.
 - Runtime: portable PowerShell 7 downloaded from its official GitHub release and verified against Microsoft's published SHA-256 checksum.
 
-Resources are not installable through PS Base until an official release artifact and checksum have been published and added to the catalog.
+The six foundation resources currently published as preview releases are installable through PS Base. Additional resources become installable when their release artifacts and checksums are published and added to the catalog.
+
+## Resource naming
+
+Pedro Scripts resource folders and GitHub repositories use the `ps_` naming convention (for example, `ps_core` and `ps_medical`). Keep the folder name, manifest resource name, dependency references and `ensure` entries aligned. Existing event namespaces and ACE permission identifiers are retained where changing them would break compatibility.
 
 ## Repository layout
 
