@@ -1,18 +1,18 @@
-[submodule "ps-core"]
-	path = ps-core
-	url = https://github.com/MMrk36/ps-core
-[submodule "ps-permissions"]
-	path = ps-permissions
-	url = https://github.com/MMrk36/ps-permissions
-[submodule "ps-database"]
-	path = ps-database
-	url = https://github.com/MMrk36/ps-database
-[submodule "ps-characters"]
-	path = ps-characters
-	url = https://github.com/MMrk36/ps-characters
-[submodule "ps-inventory"]
-	path = ps-inventory
-	url = https://github.com/MMrk36/ps-inventory
-[submodule "ps-notifications"]
-	path = ps-notifications
-	url = https://github.com/MMrk36/ps-notifications
+[submodule "ps_core"]
+	path = ps_core
+	url = https://github.com/MMrk36/ps_core
+[submodule "ps_permissions"]
+	path = ps_permissions
+	url = https://github.com/MMrk36/ps_permissions
+[submodule "ps_database"]
+	path = ps_database
+	url = https://github.com/MMrk36/ps_database
+[submodule "ps_characters"]
+	path = ps_characters
+	url = https://github.com/MMrk36/ps_characters
+[submodule "ps_inventory"]
+	path = ps_inventory
+	url = https://github.com/MMrk36/ps_inventory
+[submodule "ps_notifications"]
+	path = ps_notifications
+	url = https://github.com/MMrk36/ps_notifications
