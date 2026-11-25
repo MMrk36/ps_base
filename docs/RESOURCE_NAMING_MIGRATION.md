@@ -1,6 +1,6 @@
 # Pedro Scripts resource naming migration
 
-Status: repository rename and source migration completed; live RedM verification is still required.
+Status: repository rename and source migration completed; PS Base validation and Windows EXE build pass. New release tags and live RedM verification are still pending.
 
 ## Official convention
 
@@ -33,15 +33,15 @@ All Pedro Scripts resource folders and GitHub repositories use `ps_` instead of 
 ## Completed migration work
 
 - Updated resource names, manifest dependencies and shared imports in the resource manifests.
-- Updated cross-resource exports, resource-state checks and provider keys in the medical, doctor, character and weapons integrations.
+- Updated cross-resource exports, resource-state checks and provider keys in the medical, doctor, character and weapons integrations, including PS Core's own module API, the PS-MENU demo, medical symptom notices, doctor medical-bag storage, weapon gunsmith permissions and the propattach packaging script.
 - Updated PS Base submodule URLs and paths, including the six Git submodule entries.
 - Updated PS Base catalog IDs, repository names, install paths and dependency IDs.
 - Updated release metadata in the six currently catalogued foundation repositories.
-- Updated the PS Base catalog schema and tests for underscore resource IDs.
+- Updated the PS Base catalog schema and tests for underscore resource IDs. PS Base validation and Windows EXE build both pass after the migration.
 - Updated the catalog synchronizer to ignore legacy releases whose metadata still identifies a hyphenated resource, then use newly published underscore-named releases. Existing ZIP assets remain on GitHub but are not installable through the migrated catalog.
 - Updated the medical release package folder prefix.
 - Renamed the bundled ragdoll and minigame directories to `standalone/ps_ragdoll` and `standalone/ps_minigame`, and aligned their manifests.
-- Updated resource documentation, examples and the PS-MENU demo resource references.
+- Updated resource documentation, examples and the PS-MENU demo resource references. The `ps_progressbar`, `ps_gunsmith_menu` and `ps_gunsmith` repositories currently contain README-only placeholders rather than resource manifests or runtime code; `ps_gunsmith` already uses the underscore name.
 
 ## Compatibility decisions
 
@@ -55,6 +55,6 @@ The GitHub source changes are committed, but they do not replace a live RedM tes
 2. Check the startup order for dependencies such as `ps_core`, `ps_database`, `ps_ragdoll`, `ps_medical`, `ps_menu` and `ps_minigame`.
 3. Start the resources and check for missing-resource, export and provider errors.
 4. Test the medical/doctor, database/characters, weapons/database and menu integrations.
-5. Create the prepared version tags in the six foundation repositories, allow their release workflows to publish new underscore-named ZIPs, and run PS Base catalog synchronization. Only then should those resources become installable through PS Base.
+5. Publish the prepared foundation releases by creating these tags: `ps_core v0.1.1`, `ps_database v0.1.1`, `ps_characters v0.1.2`, `ps_inventory v0.1.1`, `ps_permissions v0.1.1` and `ps_notifications v0.1.1`. Their release workflows will create underscore-named ZIPs. Then run PS Base catalog synchronization; only then should those resources become installable through PS Base.
 
 Do not keep both old and new copies of the same resource running simultaneously.
