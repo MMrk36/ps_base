@@ -8,9 +8,20 @@
       "name": "PS Core",
       "repository": "MMrk36/ps_core",
       "submodulePath": "ps_core",
-      "status": "development",
-      "installable": false,
-      "releases": [],
+      "status": "preview",
+      "installable": true,
+      "releases": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "status": "preview",
+          "asset": "ps_core-v0.1.1.zip",
+          "url": "https://api.github.com/repos/MMrk36/ps_core/releases/assets/793064377",
+          "sha256": "d160c7dd656dfaac20bdca8eb7f60dbf4afec2850970ef4081881afd00a375f6",
+          "dependencies": [],
+          "apiVersion": "1.0.0"
+        }
+      ],
       "filePolicies": {
         "default": "managed",
         "rules": [
@@ -30,9 +41,24 @@
       "name": "PS Database",
       "repository": "MMrk36/ps_database",
       "submodulePath": "ps_database",
-      "status": "development",
-      "installable": false,
-      "releases": [],
+      "status": "preview",
+      "installable": true,
+      "releases": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "status": "preview",
+          "asset": "ps_database-v0.1.1.zip",
+          "url": "https://api.github.com/repos/MMrk36/ps_database/releases/assets/793075798",
+          "sha256": "64baa54e485def0afe3d1ac8a182abebf6a912cc24b63d352beb827a79b22a71",
+          "dependencies": [
+            "ps_core"
+          ],
+          "psCoreApi": {
+            "minVersion": "1.0.0"
+          }
+        }
+      ],
       "filePolicies": {
         "default": "managed",
         "rules": [
@@ -52,9 +78,25 @@
       "name": "PS Characters",
       "repository": "MMrk36/ps_characters",
       "submodulePath": "ps_characters",
-      "status": "development",
-      "installable": false,
-      "releases": [],
+      "status": "preview",
+      "installable": true,
+      "releases": [
+        {
+          "version": "0.1.2",
+          "tag": "v0.1.2",
+          "status": "preview",
+          "asset": "ps_characters-v0.1.2.zip",
+          "url": "https://api.github.com/repos/MMrk36/ps_characters/releases/assets/793078813",
+          "sha256": "29f0d4bd976ff19ebceddd2eb75b36b5bf9ea4b76ae7654bf7b373f2cb73219b",
+          "dependencies": [
+            "ps_core",
+            "ps_database"
+          ],
+          "psCoreApi": {
+            "minVersion": "1.0.0"
+          }
+        }
+      ],
       "filePolicies": {
         "default": "managed",
         "rules": [
@@ -74,9 +116,24 @@
       "name": "PS Inventory",
       "repository": "MMrk36/ps_inventory",
       "submodulePath": "ps_inventory",
-      "status": "development",
-      "installable": false,
-      "releases": [],
+      "status": "preview",
+      "installable": true,
+      "releases": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "status": "preview",
+          "asset": "ps_inventory-v0.1.1.zip",
+          "url": "https://api.github.com/repos/MMrk36/ps_inventory/releases/assets/793074017",
+          "sha256": "f69bd713bc3ea8ae14a5f643f347331eed9be91ce43254e3f0cd2434d94b51c8",
+          "dependencies": [
+            "ps_core"
+          ],
+          "psCoreApi": {
+            "minVersion": "1.0.0"
+          }
+        }
+      ],
       "filePolicies": {
         "default": "managed",
         "rules": [
@@ -92,9 +149,24 @@
       "name": "PS Permissions",
       "repository": "MMrk36/ps_permissions",
       "submodulePath": "ps_permissions",
-      "status": "development",
-      "installable": false,
-      "releases": [],
+      "status": "preview",
+      "installable": true,
+      "releases": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "status": "preview",
+          "asset": "ps_permissions-v0.1.1.zip",
+          "url": "https://api.github.com/repos/MMrk36/ps_permissions/releases/assets/793072662",
+          "sha256": "51ec14d35553f776d0011908027f5fa7cfde2cf4c3dd2efc2fc654be905d32c6",
+          "dependencies": [
+            "ps_core"
+          ],
+          "psCoreApi": {
+            "minVersion": "1.0.0"
+          }
+        }
+      ],
       "filePolicies": {
         "default": "managed",
         "rules": [
@@ -110,9 +182,24 @@
       "name": "PS Notifications",
       "repository": "MMrk36/ps_notifications",
       "submodulePath": "ps_notifications",
-      "status": "development",
-      "installable": false,
-      "releases": [],
+      "status": "preview",
+      "installable": true,
+      "releases": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "status": "preview",
+          "asset": "ps_notifications-v0.1.1.zip",
+          "url": "https://api.github.com/repos/MMrk36/ps_notifications/releases/assets/793070228",
+          "sha256": "6ef1bae7056e4e20157990401c822c0e3cf9a772f321b208df30b12c5ede693a",
+          "dependencies": [
+            "ps_core"
+          ],
+          "psCoreApi": {
+            "minVersion": "1.0.0"
+          }
+        }
+      ],
       "filePolicies": {
         "default": "managed",
         "rules": [
