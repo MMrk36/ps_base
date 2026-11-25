@@ -29,7 +29,7 @@ foreach ($resource in $catalog.resources) {
     }
 }
 
-$core = Get-PSBaseResource -Catalog $catalog -Id 'ps-core'
+$core = Get-PSBaseResource -Catalog $catalog -Id 'ps_core'
 $blocked = $false
 try {
     Get-PSBaseRelease -Resource $core | Out-Null
@@ -42,16 +42,16 @@ if (-not $blocked) {
     throw 'A preview release was incorrectly selected as the default stable release.'
 }
 
-$corePlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps-core') -Version '0.1.0')
-if ($corePlan.Count -ne 1 -or $corePlan[0].Id -ne 'ps-core' -or $corePlan[0].Version -ne '0.1.0') {
+$corePlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps_core') -Version '0.1.0')
+if ($corePlan.Count -ne 1 -or $corePlan[0].Id -ne 'ps_core' -or $corePlan[0].Version -ne '0.1.0') {
     throw 'An explicitly selected preview release could not be installed.'
 }
 
-$databasePlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps-database') -Version '0.1.0')
+$databasePlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps_database') -Version '0.1.0')
 if ($databasePlan.Count -ne 2 -or
-    $databasePlan[0].Id -ne 'ps-core' -or
+    $databasePlan[0].Id -ne 'ps_core' -or
     $databasePlan[0].Version -ne '0.1.0' -or
-    $databasePlan[1].Id -ne 'ps-database') {
+    $databasePlan[1].Id -ne 'ps_database') {
     throw 'Preview dependency pins did not resolve in dependency-first order.'
 }
 
