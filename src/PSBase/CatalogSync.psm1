@@ -216,7 +216,10 @@ function Update-PSBaseCatalogFromGitHub {
             catch { throw "Release '$($resource.id)@$($release.tag_name)' has invalid metadata JSON." }
 
             $legacyResourceId = $resource.id -replace '_', '-'
-            if ($metadata.id -cne $resource.id -and $metadata.id -cne $legacyResourceId) {
+            if ($metadata.id -cne $resource.id) {
+                if ($metadata.id -ceq $legacyResourceId) {
+                    continue
+                }
                 throw "Release '$($resource.id)@$($release.tag_name)' identifies itself as '$($metadata.id)'."
             }
 
