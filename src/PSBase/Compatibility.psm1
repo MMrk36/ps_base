@@ -82,11 +82,11 @@ function Test-PSBaseCompatibility {
     }
 
     $coreApiVersion = $null
-    if ($selected.ContainsKey('ps-core')) {
-        $coreApiVersion = [string]$selected['ps-core'].ApiVersion
+    if ($selected.ContainsKey('ps_core')) {
+        $coreApiVersion = [string]$selected['ps_core'].ApiVersion
     }
-    elseif ($null -ne $lock -and $lock.installedResources.Contains('ps-core')) {
-        $coreApiVersion = [string]$lock.installedResources['ps-core'].apiVersion
+    elseif ($null -ne $lock -and $lock.installedResources.Contains('ps_core')) {
+        $coreApiVersion = [string]$lock.installedResources['ps_core'].apiVersion
     }
 
     $warnings = [System.Collections.Generic.List[string]]::new()
@@ -94,8 +94,8 @@ function Test-PSBaseCompatibility {
     foreach ($item in $Plan) {
         if ($null -ne $item.PsCoreApi) {
             if ([string]::IsNullOrWhiteSpace($coreApiVersion)) {
-                if ([string]::IsNullOrWhiteSpace($ServerRoot) -and -not $selected.ContainsKey('ps-core')) {
-                    $warnings.Add("Cannot check PS Core API compatibility for '$($item.Id)' without -ServerPath or ps-core in the plan.")
+                if ([string]::IsNullOrWhiteSpace($ServerRoot) -and -not $selected.ContainsKey('ps_core')) {
+                    $warnings.Add("Cannot check PS Core API compatibility for '$($item.Id)' without -ServerPath or ps_core in the plan.")
                 }
                 else {
                     throw "Cannot verify PS Core API compatibility for '$($item.Id)': no installed or selected PS Core API version is recorded."
@@ -119,10 +119,10 @@ function Test-PSBaseCompatibility {
         }
     }
 
-    if ($selected.ContainsKey('ps-core') -and $null -ne $lock) {
+    if ($selected.ContainsKey('ps_core') -and $null -ne $lock) {
         foreach ($entry in $lock.installedResources.GetEnumerator()) {
             $resourceId = [string]$entry.Key
-            if ($resourceId -ieq 'ps-core' -or $selected.ContainsKey($resourceId)) { continue }
+            if ($resourceId -ieq 'ps_core' -or $selected.ContainsKey($resourceId)) { continue }
 
             $range = $entry.Value.psCoreApi
             if ($null -eq $range) {
