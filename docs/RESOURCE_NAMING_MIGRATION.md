@@ -38,7 +38,7 @@ All Pedro Scripts resource folders and GitHub repositories use `ps_` instead of 
 - Updated PS Base catalog IDs, repository names, install paths and dependency IDs.
 - Updated release metadata in the six currently catalogued foundation repositories.
 - Updated the PS Base catalog schema and tests for underscore resource IDs.
-- Updated the catalog synchronizer to accept the existing hyphenated release metadata and asset names while emitting underscore dependency IDs. This keeps existing published releases installable until new releases are published.
+- Updated the catalog synchronizer to ignore legacy releases whose metadata still identifies a hyphenated resource, then use newly published underscore-named releases. Existing ZIP assets remain on GitHub but are not installable through the migrated catalog.
 - Updated the medical release package folder prefix.
 - Renamed the bundled ragdoll and minigame directories to `standalone/ps_ragdoll` and `standalone/ps_minigame`, and aligned their manifests.
 - Updated resource documentation, examples and the PS-MENU demo resource references.
@@ -55,6 +55,6 @@ The GitHub source changes are committed, but they do not replace a live RedM tes
 2. Check the startup order for dependencies such as `ps_core`, `ps_database`, `ps_ragdoll`, `ps_medical`, `ps_menu` and `ps_minigame`.
 3. Start the resources and check for missing-resource, export and provider errors.
 4. Test the medical/doctor, database/characters, weapons/database and menu integrations.
-5. Run the PS Base validation and catalog tests, then verify that an existing published release still downloads under its legacy asset filename.
+5. Create the prepared version tags in the six foundation repositories, allow their release workflows to publish new underscore-named ZIPs, and run PS Base catalog synchronization. Only then should those resources become installable through PS Base.
 
 Do not keep both old and new copies of the same resource running simultaneously.
