@@ -2,7 +2,7 @@
 
 PS Base is the installation and resource management tool for the Pedro Scripts ecosystem.
 
-It is designed to install and manage independently maintained RedM resources. Each resource remains its own project, repository, release cycle and runtime resource. PS Base coordinates distribution; it does not replace ps-core or become a runtime dependency.
+It is designed to install and manage independently maintained RedM resources. Each resource remains its own project, repository, release cycle and runtime resource. PS Base coordinates distribution; it does not replace ps_core or become a runtime dependency.
 
 ## Current status
 
@@ -18,7 +18,7 @@ Resources are not installable through PS Base until an official release artifact
 ## Repository layout
 
 ```text
-ps-base/
+ps_base/
 ├── .github/workflows/ Build, validation and catalog workflows
 ├── build/              Pinned desktop release toolchain
 ├── catalog/            Resource distribution catalog
@@ -27,19 +27,19 @@ ps-base/
 ├── src/PSBase/         PowerShell installer modules
 ├── cmd/psbase-bootstrap/ Lightweight Go GitHub downloader
 ├── tests/              PowerShell tests
-├── ps-core/            Git submodule
-├── ps-characters/      Git submodule
-├── ps-database/        Git submodule
-├── ps-inventory/       Git submodule
-├── ps-notifications/   Git submodule
-└── ps-permissions/     Git submodule
+├── ps_core/            Git submodule
+├── ps_characters/      Git submodule
+├── ps_database/        Git submodule
+├── ps_inventory/       Git submodule
+├── ps_notifications/   Git submodule
+└── ps_permissions/     Git submodule
 ```
 
 ## Clone the development workspace
 
 ```powershell
-git clone --recurse-submodules https://github.com/MMrk36/ps-base.git
-cd ps-base
+git clone --recurse-submodules https://github.com/MMrk36/ps_base.git
+cd ps_base
 git submodule update --init --recursive
 ```
 
