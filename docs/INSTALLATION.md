@@ -51,7 +51,7 @@ Each installation records a SHA-256 baseline for every release file in `.ps-base
 Updates are available through:
 
 ```powershell
-pwsh -File ./PS-Base.ps1 update -Resource ps-core -ServerPath "D:/RedM/server"
+pwsh -File ./PS-Base.ps1 update -Resource ps_core -ServerPath "D:/RedM/server"
 ```
 
 The command displays a file-level plan before applying it. It downloads and verifies the selected release, creates a full resource backup, applies only safe changes, and records the new baseline and installed version. If an operation fails, it attempts to restore the prior resource, manifest and lockfile. Keep backups until the update has been verified in a running server.
