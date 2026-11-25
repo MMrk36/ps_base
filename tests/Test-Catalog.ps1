@@ -35,24 +35,23 @@ try {
     Get-PSBaseRelease -Resource $core | Out-Null
 }
 catch {
-    $blocked = $_.Exception.Message -match 'No stable semantic version'
+    $blocked = $_.Exception.Message -match 'not installable'
 }
-
 if (-not $blocked) {
-    throw 'A preview release was incorrectly selected as the default stable release.'
+    throw 'A legacy release artifact was incorrectly left installable after the resource rename.'
 }
 
-$corePlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps_core') -Version '0.1.0')
-if ($corePlan.Count -ne 1 -or $corePlan[0].Id -ne 'ps_core' -or $corePlan[0].Version -ne '0.1.0') {
-    throw 'An explicitly selected preview release could not be installed.'
-}
-
-$databasePlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps_database') -Version '0.1.0')
-if ($databasePlan.Count -ne 2 -or
-    $databasePlan[0].Id -ne 'ps_core' -or
-    $databasePlan[0].Version -ne '0.1.0' -or
-    $databasePlan[1].Id -ne 'ps_database') {
-    throw 'Preview dependency pins did not resolve in dependency-first order.'
+foreach ($resourceId in @('ps_core', 'ps_database')) {
+    $blocked = $false
+    try {
+        Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @($resourceId) -Version '0.1.0' | Out-Null
+    }
+    catch {
+        $blocked = $_.Exception.Message -match 'not installable'
+    }
+    if (-not $blocked) {
+        throw "Legacy resource '$resourceId' was incorrectly accepted by the installer."
+    }
 }
 
 $unavailable = [pscustomobject]@{
