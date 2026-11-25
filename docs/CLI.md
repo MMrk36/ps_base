@@ -6,8 +6,8 @@ Run commands from the repository directory:
 
 ```powershell
 pwsh -File ./PS-Base.ps1 list
-pwsh -File ./PS-Base.ps1 plan -Resource ps-core
-pwsh -File ./PS-Base.ps1 plan -Resource ps-core -Version 1.0.0
+pwsh -File ./PS-Base.ps1 plan -Resource ps_core
+pwsh -File ./PS-Base.ps1 plan -Resource ps_core -Version 1.0.0
 ```
 
 ## Commands
@@ -27,7 +27,7 @@ The plan command is read-only. It does not download, extract, install or modify 
 ### Update installed resources
 
 ```powershell
-pwsh -File ./PS-Base.ps1 update -Resource ps-core -ServerPath "D:/RedM/server"
+pwsh -File ./PS-Base.ps1 update -Resource ps_core -ServerPath "D:/RedM/server"
 ```
 
 The update command resolves the selected resources and dependencies, downloads and verifies every artifact, and prints a file-level change plan before making changes. Updates run as a journaled transaction: PS Base records a backup before applying each resource, and if a later resource fails it restores earlier resources in reverse order. Interrupted transactions can be recovered explicitly. It requires an existing PS Base manifest; older/manual installations without a baseline are rejected rather than updated destructively. Local modifications, untracked files, local deletions and preserve-policy files are retained. A full resource backup is created before changes are applied.
@@ -45,7 +45,7 @@ The status report compares installed files with the recorded release manifest an
 ### Safely uninstall a resource
 
 ```powershell
-pwsh -File ./PS-Base.ps1 uninstall -Resource ps-core -ServerPath "D:/RedM/server"
+pwsh -File ./PS-Base.ps1 uninstall -Resource ps_core -ServerPath "D:/RedM/server"
 ```
 
 Uninstall creates a full backup and removes only unchanged files managed by PS Base. Locally modified, untracked and preserve-policy files are retained. If any files remain, the resource is marked as partially uninstalled rather than deleting user data.
@@ -54,7 +54,7 @@ Uninstall creates a full backup and removes only unchanged files managed by PS B
 
 ```powershell
 pwsh -File ./PS-Base.ps1 backups -ServerPath "D:/RedM/server"
-pwsh -File ./PS-Base.ps1 restore -BackupId "ps-core-update-20261111-120000-123-<guid>" -ServerPath "D:/RedM/server"
+pwsh -File ./PS-Base.ps1 restore -BackupId "ps_core-update-20261111-120000-123-<guid>" -ServerPath "D:/RedM/server"
 ```
 
 Backups created by PS Base include the resource files and the matching manifest/lockfile metadata. Restore creates a safety backup of the current resource before replacing it. Use the exact backup identifier from the listing; restore never accepts an arbitrary filesystem path.
@@ -115,7 +115,7 @@ The current catalog intentionally contains no published releases. Resource relea
 
 The install command requires an explicit server root:
 
-    pwsh -File ./PS-Base.ps1 install -Resource ps-core -ServerPath "D:/RedM/server"
+    pwsh -File ./PS-Base.ps1 install -Resource ps_core -ServerPath "D:/RedM/server"
 
 An alternate resources directory can be supplied with ResourcesPath. Use -WhatIf to preview the command without changing files.
 
