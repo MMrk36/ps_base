@@ -26,10 +26,10 @@ The parent PS Base repository records exact commits for every submodule. This is
 To update one resource deliberately:
 
 ```powershell
-git -C ./ps-core fetch --tags
-git -C ./ps-core checkout <tag-or-commit>
-git add ./ps-core
-git commit -m "Update ps-core submodule"
+git -C ./ps_core fetch --tags
+git -C ./ps_core checkout <tag-or-commit>
+git add ./ps_core
+git commit -m "Update ps_core submodule"
 ```
 
 Replace the placeholder with a real tag or commit. Do not automatically move all submodules to their latest branch commits.
