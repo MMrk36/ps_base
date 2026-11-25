@@ -40,7 +40,7 @@ try {
         catalogVersion = '1.0.0'
         resources = @(
             @{
-                id = 'ps-core'; name = 'PS Core'; repository = 'Pedro/ps-core'; submodulePath = 'ps-core'
+                id = 'ps_core'; name = 'PS Core'; repository = 'Pedro/ps_core'; submodulePath = 'ps_core'
                 status = 'stable'; installable = $true
                 releases = @(
                     (New-CompatibilityRelease '1.0.0' '1.5.0' $null $null),
@@ -67,13 +67,13 @@ try {
     $lock = @{
         schemaVersion = 1
         installedResources = @{
-            'ps-core' = @{ version = '1.0.0'; apiVersion = '1.5.0'; installedPath = 'resources/ps-core' }
+            'ps_core' = @{ version = '1.0.0'; apiVersion = '1.5.0'; installedPath = 'resources/ps_core' }
             'ps-addon' = @{ version = '1.0.0'; installedPath = 'resources/ps-addon'; psCoreApi = @{ minVersion = '1.0.0'; maxVersion = '2.0.0' } }
         }
     }
     $lock | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath (Join-Path $lockDirectory 'lock.json')
 
-    $coreTwoPlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps-core') -Version '2.0.0')
+    $coreTwoPlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps_core') -Version '2.0.0')
     if ($coreTwoPlan[0].ApiVersion -ne '2.0.0') { throw 'PS Core API version was not propagated into the resolved plan.' }
     $blocked = $false
     try {
@@ -84,7 +84,7 @@ try {
     }
     if (-not $blocked) { throw 'A PS Core upgrade that breaks an installed add-on was not blocked.' }
 
-    $coreOnePlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps-core') -Version '1.0.0')
+    $coreOnePlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps_core') -Version '1.0.0')
     Test-PSBaseCompatibility -Catalog $catalog -Plan $coreOnePlan -ServerRoot $server | Out-Null
 
     $addonPlan = @(Resolve-PSBaseInstallPlan -Catalog $catalog -ResourceIds @('ps-addon') -Version '1.0.0')
