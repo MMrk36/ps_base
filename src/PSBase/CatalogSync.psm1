@@ -130,6 +130,14 @@ function ConvertTo-PSBaseReleaseEntry {
         throw "Release '$tag' is missing the expected ZIP asset '$zipName'."
     }
 
+    $dependencies = @($Metadata.dependencies | ForEach-Object {
+        $dependencyId = [string]$_
+        if ($dependencyId.StartsWith('ps-', [System.StringComparison]::Ordinal)) {
+            $dependencyId = $dependencyId.Replace('-', '_')
+        }
+        $dependencyId
+    })
+
     $entry = [ordered]@{
         version = [string]$Metadata.version
         tag = $tag
@@ -137,7 +145,7 @@ function ConvertTo-PSBaseReleaseEntry {
         asset = $zipName
         url = [string]$zipAsset.url
         sha256 = $hash
-        dependencies = @($Metadata.dependencies)
+        dependencies = $dependencies
     }
 
     foreach ($field in @('apiVersion', 'psCoreApi', 'minimumArtifact', 'releaseNotes', 'license')) {
@@ -192,7 +200,12 @@ function Update-PSBaseCatalogFromGitHub {
             if ($release.tag_name -notmatch '^v?[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$') { continue }
 
             $metadataAsset = @($release.assets | Where-Object { $_.name -ceq 'ps-base-release.json' }) | Select-Object -First 1
-            $checksumAsset = @($release.assets | Where-Object { $_.name -ceq "$($resource.id)-$($release.tag_name).zip.sha256" }) | Select-Object -First 1
+            $legacyResourceId = $resource.id -replace '_', '-'
+            $checksumNames = @(
+                "$($resource.id)-$($release.tag_name).zip.sha256",
+                "$legacyResourceId-$($release.tag_name).zip.sha256"
+            )
+            $checksumAsset = @($release.assets | Where-Object { $_.name -in $checksumNames }) | Select-Object -First 1
             if ($null -eq $metadataAsset -or $null -eq $checksumAsset) {
                 throw "Release '$($resource.id)@$($release.tag_name)' is missing its metadata or checksum asset."
             }
@@ -202,7 +215,8 @@ function Update-PSBaseCatalogFromGitHub {
             try { $metadata = $metadataText | ConvertFrom-Json }
             catch { throw "Release '$($resource.id)@$($release.tag_name)' has invalid metadata JSON." }
 
-            if ($metadata.id -cne $resource.id) {
+            $legacyResourceId = $resource.id -replace '_', '-'
+            if ($metadata.id -cne $resource.id -and $metadata.id -cne $legacyResourceId) {
                 throw "Release '$($resource.id)@$($release.tag_name)' identifies itself as '$($metadata.id)'."
             }
 
