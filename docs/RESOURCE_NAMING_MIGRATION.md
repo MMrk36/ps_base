@@ -1,6 +1,6 @@
 # Pedro Scripts resource naming migration
 
-Status: repository rename and source migration completed; PS Base validation and Windows EXE build pass. New release tags and live RedM verification are still pending.
+Status: repository rename and source migration completed; all six foundation releases are published and the PS Base catalog is synchronized. PS Base validation and Windows EXE build pass. Live RedM verification is still pending.
 
 ## Official convention
 
@@ -55,6 +55,6 @@ The GitHub source changes are committed, but they do not replace a live RedM tes
 2. Check the startup order for dependencies such as `ps_core`, `ps_database`, `ps_ragdoll`, `ps_medical`, `ps_menu` and `ps_minigame`.
 3. Start the resources and check for missing-resource, export and provider errors.
 4. Test the medical/doctor, database/characters, weapons/database and menu integrations.
-5. Publish the prepared foundation releases by creating these tags: `ps_core v0.1.1`, `ps_database v0.1.1`, `ps_characters v0.1.2`, `ps_inventory v0.1.1`, `ps_permissions v0.1.1` and `ps_notifications v0.1.1`. Their release workflows will create underscore-named ZIPs. Then run PS Base catalog synchronization; only then should those resources become installable through PS Base.
+5. Confirm the six foundation releases and their underscore-named ZIP assets are published: `ps_core v0.1.1`, `ps_database v0.1.1`, `ps_characters v0.1.2`, `ps_inventory v0.1.1`, `ps_permissions v0.1.1` and `ps_notifications v0.1.1`. The PS Base catalog has been updated with these releases; verify installation from the PS Base GUI/CLI on a test machine.
 
 Do not keep both old and new copies of the same resource running simultaneously.
