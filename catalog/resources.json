@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "0.2.2",
+  "catalogVersion": "0.2.3",
   "profiles": [],
   "resources": [
     {
@@ -82,8 +82,8 @@
       "name": "PS Characters",
       "repository": "MMrk36/ps_characters",
       "submodulePath": "ps_characters",
-      "status": "preview",
-      "installable": true,
+      "status": "development",
+      "installable": false,
       "releases": [
         {
           "version": "0.1.2",
@@ -124,8 +124,8 @@
       "name": "PS Inventory",
       "repository": "MMrk36/ps_inventory",
       "submodulePath": "ps_inventory",
-      "status": "preview",
-      "installable": true,
+      "status": "development",
+      "installable": false,
       "releases": [
         {
           "version": "0.1.1",
@@ -165,8 +165,8 @@
       "name": "PS Permissions",
       "repository": "MMrk36/ps_permissions",
       "submodulePath": "ps_permissions",
-      "status": "preview",
-      "installable": true,
+      "status": "development",
+      "installable": false,
       "releases": [
         {
           "version": "0.1.1",
@@ -202,8 +202,8 @@
       "name": "PS Notifications",
       "repository": "MMrk36/ps_notifications",
       "submodulePath": "ps_notifications",
-      "status": "preview",
-      "installable": true,
+      "status": "development",
+      "installable": false,
       "releases": [
         {
           "version": "0.1.1",
