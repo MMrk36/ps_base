@@ -13,7 +13,7 @@ PS Base is a Windows desktop installer with a PowerShell 7 GUI and CLI engine. I
 - Installation target: a user-selected RedM server `resources` directory.
 - Runtime: portable PowerShell 7 downloaded from its official GitHub release and verified against Microsoft's published SHA-256 checksum.
 
-The six foundation resources currently published as preview releases are installable through PS Base. Additional resources become installable when their release artifacts and checksums are published and added to the catalog.
+The catalog tracks six foundation resources. Installation of `ps_core` and `ps_database` is deliberately blocked because their published artifacts predate the underscore resource rename. The remaining foundation resources depend on those packages, so a complete stack must wait for compatible core/database releases. Additional resources become installable after compatible release artifacts and checksums are published and added to the catalog.
 
 ## Resource naming
 
