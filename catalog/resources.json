@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "0.2.0",
+  "catalogVersion": "0.2.1",
   "profiles": [],
   "resources": [
     {
@@ -69,6 +69,10 @@
           {
             "pattern": "sql/**",
             "policy": "preserve"
+          },
+          {
+            "pattern": "adapters/**",
+            "policy": "preserve"
           }
         ]
       }
@@ -107,6 +111,10 @@
           {
             "pattern": "sql/**",
             "policy": "preserve"
+          },
+          {
+            "pattern": "adapters/**",
+            "policy": "preserve"
           }
         ]
       }
@@ -139,6 +147,14 @@
         "rules": [
           {
             "pattern": "config/**",
+            "policy": "preserve"
+          },
+          {
+            "pattern": "adapters/**",
+            "policy": "preserve"
+          },
+          {
+            "pattern": "integrations/**",
             "policy": "preserve"
           }
         ]
@@ -173,6 +189,10 @@
           {
             "pattern": "config/**",
             "policy": "preserve"
+          },
+          {
+            "pattern": "adapters/**",
+            "policy": "preserve"
           }
         ]
       }
@@ -205,6 +225,10 @@
         "rules": [
           {
             "pattern": "config/**",
+            "policy": "preserve"
+          },
+          {
+            "pattern": "adapters/**",
             "policy": "preserve"
           }
         ]
