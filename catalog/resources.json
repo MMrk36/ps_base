@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "0.2.1",
+  "catalogVersion": "0.2.2",
   "profiles": [],
   "resources": [
     {
@@ -8,8 +8,8 @@
       "name": "PS Core",
       "repository": "MMrk36/ps_core",
       "submodulePath": "ps_core",
-      "status": "preview",
-      "installable": true,
+      "status": "development",
+      "installable": false,
       "releases": [
         {
           "version": "0.1.1",
@@ -41,8 +41,8 @@
       "name": "PS Database",
       "repository": "MMrk36/ps_database",
       "submodulePath": "ps_database",
-      "status": "preview",
-      "installable": true,
+      "status": "development",
+      "installable": false,
       "releases": [
         {
           "version": "0.1.1",
