@@ -19,10 +19,6 @@ The six foundation resources currently published as preview releases are install
 
 Pedro Scripts resource folders and GitHub repositories use the `ps_` naming convention (for example, `ps_core` and `ps_medical`). Keep the folder name, manifest resource name, dependency references and `ensure` entries aligned. Existing event namespaces and ACE permission identifiers are retained where changing them would break compatibility.
 
-## Resource naming
-
-Pedro Scripts resource folders and GitHub repositories use the `ps_` naming convention (for example, `ps_core` and `ps_medical`). Keep the folder name, manifest resource name, dependency references and `ensure` entries aligned. Existing event namespaces and ACE permission identifiers are retained where changing them would break compatibility.
-
 ## Repository layout
 
 ```text
